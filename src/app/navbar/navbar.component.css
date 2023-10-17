@@ -1,15 +1,50 @@
-li {
-    list-style: none;
+.navbar-container
+{
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: black;
+    color:White;
+    margin:0;
+    padding:2em;
+}
+
+.logo a
+{
+    font-size:1.5rem;
     text-decoration: none;
     color:white;
 }
 
-.navbar-container{
-    display:flex;
-    background-color: black;
-    color:White;
+.logo a:hover
+{
+    color:lightgrey;
 }
-ul{
+
+
+ul
+{
+  
     display:flex;
     color:white;
+}
+
+li 
+{
+    padding-left: 1.5em;
+    list-style: none;
+    padding-left:1em;
+}
+
+li a
+{
+    font-size:1.2rem;
+    padding-left: 1.5em;
+    text-decoration: none;
+    color:white;
+}
+
+li a:hover
+{
+    color:lightgray
 }

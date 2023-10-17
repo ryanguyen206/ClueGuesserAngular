@@ -6,8 +6,8 @@ import { RecordComponent } from './record/record.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'records', component: PuzzleCreationComponent },
-  { path: 'puzzlecreation', component: RecordComponent },
+  { path: 'records', component: RecordComponent },
+  { path: 'puzzle-creation', component: PuzzleCreationComponent },
 ];
 
 @NgModule({

@@ -7,6 +7,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 import { PuzzleCreationComponent } from './puzzle-creation/puzzle-creation.component';
 import { RecordComponent } from './record/record.component';
+import { PuzzleGridComponent } from './puzzle-grid/puzzle-grid.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { RecordComponent } from './record/record.component';
     NavbarComponent,
     HomeComponent,
     PuzzleCreationComponent,
-    RecordComponent
+    RecordComponent,
+    PuzzleGridComponent
   ],
   imports: [
     BrowserModule,

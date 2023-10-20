@@ -1,1 +1,20 @@
+<div class="userInput">
+    <input type="text" [(ngModel)]="userInput" placeholder="Type your answer." />
+    <button (click)="confirm()">Confirm</button>
+</div>
+
+<!-- This is here so we don't have to constantly guess if the answer is right or not -->
+<!-- <h2>Correct Word: {{ correctWord?.name }}</h2> -->
+
+<button (click)="toggleClue()">Show/Hide Clue</button>
+
+<!-- Display the clue -->
+<div *ngIf="clueVisible">
+  <p>Clue: {{ clue }}</p>
+</div>
+
 <app-puzzle-grid></app-puzzle-grid>
+
+
+
+

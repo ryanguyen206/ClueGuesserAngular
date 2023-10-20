@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,6 +10,7 @@ import { PuzzleCreationComponent } from './puzzle-creation/puzzle-creation.compo
 import { RecordComponent } from './record/record.component';
 import { PuzzleGridComponent } from './puzzle-grid/puzzle-grid.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,11 +18,13 @@ import { PuzzleGridComponent } from './puzzle-grid/puzzle-grid.component';
     HomeComponent,
     PuzzleCreationComponent,
     RecordComponent,
-    PuzzleGridComponent
+    PuzzleGridComponent,
+    
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

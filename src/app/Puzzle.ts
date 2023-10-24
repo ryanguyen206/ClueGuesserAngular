@@ -1,10 +1,10 @@
-import { Word } from './word';
+import { WordInterface, WordClass } from './word';
 import { shuffle } from './Shuffle';
 
 export class Puzzle {
 
     id: number;
-    cardComponents: Word[];
+    cardComponents: WordInterface[];
     numberOfCorrectAnswers: number;
 
     constructor(wordlist: string[]) {
@@ -14,15 +14,15 @@ export class Puzzle {
         let n = this.numberOfCorrectAnswers + 1;
         wordlist.forEach(element => {
         if(n == this.numberOfCorrectAnswers){
-            this.cardComponents.push(new Word(element, "bomb")); // The fist word in the stack is always the bomb word
+            this.cardComponents.push(new WordClass(element, "bomb")); // The fist word in the stack is always the bomb word
             n--; 
         }
         else if(n > 0){
-            this.cardComponents.push(new Word(element, "correct")); // Then the next 1 - 4 words are the correct answers
+            this.cardComponents.push(new WordClass(element, "correct")); // Then the next 1 - 4 words are the correct answers
             n--; 
         }
         else {
-            this.cardComponents.push(new Word(element, "incorrect")); // All of the other words are wrong answers
+            this.cardComponents.push(new WordClass(element, "incorrect")); // All of the other words are wrong answers
         }
         });
         shuffle(this.cardComponents); 

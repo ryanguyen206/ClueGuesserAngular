@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {WORDS} from '../mock-words';
-import {Word} from '../word'
+import {WordInterface} from '../word'
 
 
 @Component({
@@ -13,8 +13,8 @@ export class HomeComponent {
 
   userInput: string = '';
   confirming: boolean = false;
-  words: Word[] = WORDS;
-  correctWord: Word | undefined;
+  words: WordInterface[] = WORDS;
+  correctWord: WordInterface | undefined;
 
   // Need to change the clue later on 
   clue: string = 'Animal'; 

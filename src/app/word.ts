@@ -1,12 +1,12 @@
 // This is an experimental word class which probably won't be used in production
 
-export interface Word {
+export interface WordInterface {
     id: number;
     name: string;
     answerClass: string;
   }
 
-  export class Word implements Word {
+  export class WordClass implements WordInterface {
     id: number;
     name: string;
     answerClass: string;

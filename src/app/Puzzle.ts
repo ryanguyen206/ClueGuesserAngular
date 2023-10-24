@@ -17,7 +17,7 @@ export class Puzzle {
             this.cardComponents.push(new Word(element, "bomb")); // The fist word in the stack is always the bomb word
             n--; 
         }
-        if(n > 0){
+        else if(n > 0){
             this.cardComponents.push(new Word(element, "correct")); // Then the next 1 - 4 words are the correct answers
             n--; 
         }

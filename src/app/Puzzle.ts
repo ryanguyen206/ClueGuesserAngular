@@ -1,5 +1,5 @@
 import { Word } from './word';
-import { shuffleWordArray } from './Shuffle';
+import { shuffle } from './Shuffle';
 
 export class Puzzle {
 
@@ -25,6 +25,6 @@ export class Puzzle {
             this.cardComponents.push(new Word(element, "incorrect")); // All of the other words are wrong answers
         }
         });
-        shuffleWordArray(this.cardComponents); 
+        shuffle(this.cardComponents); 
     }
 }

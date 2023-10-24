@@ -1,6 +1,6 @@
-import { Word } from './word';
+import { WordInterface } from './word';
 
-export const WORDS: Word[] = [
+export const WORDS: WordInterface[] = [
   { id: 1, name: 'Apple', answerClass: "bomb" },
   { id: 2, name: 'Dog', answerClass: "correct"  },
   { id: 3, name: 'Chair', answerClass: "incorrect"  },

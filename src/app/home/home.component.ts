@@ -31,7 +31,7 @@ export class HomeComponent {
 
   selectCorrectWord() {
     //Only picks the word that matches the clue which is animal at the moment
-    const correctWords = this.words.filter((word) => word.bIsCorrect);
+    const correctWords = this.words.filter((word) => word.answerClass == "correct");
     const randomIndex = Math.floor(Math.random() * correctWords.length);
     this.correctWord = correctWords[randomIndex];
   }

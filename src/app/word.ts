@@ -3,5 +3,16 @@
 export interface Word {
     id: number;
     name: string;
-    bIsCorrect: boolean;
+    answerClass: string;
+  }
+
+  export class Word implements Word {
+    id: number;
+    name: string;
+    answerClass: string;
+    constructor(word: string, answerClass: string){
+      this.id = Math.random()*1000;
+      this.name = word;
+      this.answerClass = answerClass;
+    }
   }

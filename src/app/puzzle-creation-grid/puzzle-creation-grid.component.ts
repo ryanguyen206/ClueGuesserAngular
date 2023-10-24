@@ -1,0 +1,22 @@
+import { Component, OnInit } from '@angular/core';
+import {PUZZLEWORDS} from '../wordlist';
+import { Puzzle } from '../Puzzle';
+import { shuffleStringArray } from '../Shuffle';
+
+@Component({
+  selector: 'app-puzzle-creation-grid',
+  templateUrl: './puzzle-creation-grid.component.html',
+  styleUrls: ['./puzzle-creation-grid.component.css']
+})
+export class PuzzleCreationGridComponent implements OnInit {
+
+  constructor() { }
+
+  orderedWords = PUZZLEWORDS;
+  selectedWords = shuffleStringArray(this.orderedWords).splice(1, 24);
+  puzzle = new Puzzle(this.selectedWords);
+
+  ngOnInit(): void {
+  }
+
+}

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {WORDS} from '../mock-words';
-import {Word} from '../word'
+import {WordInterface} from '../word'
 
 @Component({
   selector: 'app-puzzle-grid',
@@ -24,7 +24,7 @@ export class PuzzleGridComponent implements OnInit {
 
 }
 
-function shuffleArray(array: Word[]) {
+function shuffleArray(array: WordInterface[]) {
   for (let i = array.length - 1; i > 0; i--) {
     // Generate a random index between 0 and i
     const j = Math.floor(Math.random() * (i + 1));

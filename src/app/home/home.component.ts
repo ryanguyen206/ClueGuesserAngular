@@ -10,57 +10,23 @@ import {WordInterface} from '../word'
 })
 
 export class HomeComponent {
-
-  userInput: string = '';
-  confirming: boolean = false;
   words: WordInterface[] = WORDS;
-  correctWord: WordInterface | undefined;
+  correctWords: WordInterface[] = [];
+  clue: string = 'Animal';
+  isCorrect: boolean | null = null;
 
-  // Need to change the clue later on 
-  clue: string = 'Animal'; 
-  clueVisible: boolean = false;
-
-
-  toggleClue() {
-    this.clueVisible = !this.clueVisible;
-  }
-  
   constructor() {
-    this.selectCorrectWord();
+    this.selectCorrectWords();
   }
 
-  selectCorrectWord() {
-    //Only picks the word that matches the clue which is animal at the moment
-    const correctWords = this.words.filter((word) => word.answerClass == "correct");
-    const randomIndex = Math.floor(Math.random() * correctWords.length);
-    this.correctWord = correctWords[randomIndex];
+
+  selectCorrectWords() {
+    // Filter correct words based on the "correct" class
+    this.correctWords = this.words.filter((word) => word.answerClass === 'correct');
   }
 
-  confirm() {
-    if (this.confirming) {
-      this.checkUserInput();
-    } else {
-      this.confirming = true;
-      alert('Are you sure you want to confirm?');
-    }
-  }
-
-  checkUserInput() {
-    // Trim is there for additional, accidental, and extra spacebar inputs
-    //lowercase is to make it where user can put bird instead of Bird
-
-    const userInputClean = this.userInput.trim().toLowerCase();
-    const correctWordClean = this.correctWord?.name.toLowerCase();
-
-    //Popup will appear if user is right or wrong
-    if (userInputClean === correctWordClean) {
-      alert('Correct!');
-    } else {
-      alert('Incorrect. Try again.');
-    }
-
-    // Reset input and confirmation alert
-    this.userInput = '';
-    this.confirming = false;
+  checkWord(word: WordInterface) {
+    // Check if the clicked word is in the list of correct words
+    this.isCorrect = this.correctWords.some((correctWord) => correctWord.name === word.name);
   }
 }

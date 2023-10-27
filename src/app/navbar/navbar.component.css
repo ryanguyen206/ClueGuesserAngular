@@ -3,14 +3,15 @@
     display:flex;
     justify-content: space-around;
     align-items: center;
-    background-color: black;
-    color:White;
+    background-color: #23272a;
+    color:#ffffff;
     margin:0;
     padding:2em;
 }
 
 .logo a
 {
+    font-weight: bold;
     font-size:1.5rem;
     text-decoration: none;
     color:white;

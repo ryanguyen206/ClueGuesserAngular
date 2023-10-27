@@ -10,6 +10,7 @@ import { PuzzleCreationComponent } from './puzzle-creation/puzzle-creation.compo
 import { RecordComponent } from './record/record.component';
 import { PuzzleGridComponent } from './puzzle-grid/puzzle-grid.component';
 import { PuzzleCreationGridComponent } from './puzzle-creation-grid/puzzle-creation-grid.component';
+import { TutorialComponent } from './tutorial/tutorial.component';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { PuzzleCreationGridComponent } from './puzzle-creation-grid/puzzle-creat
     RecordComponent,
     PuzzleGridComponent,
     PuzzleCreationGridComponent,
+    TutorialComponent,
     
   ],
   imports: [

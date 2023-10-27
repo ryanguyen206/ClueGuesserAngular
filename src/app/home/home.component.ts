@@ -21,12 +21,10 @@ export class HomeComponent {
 
 
   selectCorrectWords() {
-    // Filter correct words based on the "correct" class
     this.correctWords = this.words.filter((word) => word.answerClass === 'correct');
   }
 
   checkWord(word: WordInterface) {
-    // Check if the clicked word is in the list of correct words
     this.isCorrect = this.correctWords.some((correctWord) => correctWord.name === word.name);
   }
 }

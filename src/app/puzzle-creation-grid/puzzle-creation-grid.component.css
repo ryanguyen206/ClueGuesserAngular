@@ -21,13 +21,13 @@ h2
 }
 
 .bomb{
-    background-color: lightgray;
+    background-color: #b2b7be;
 }
 
 .incorrect{
-    background-color: pink;
+    background-color: #f23f43;
 }
 
 .correct{
-    background-color: lightgreen;
+    background-color: #23a559;
 }

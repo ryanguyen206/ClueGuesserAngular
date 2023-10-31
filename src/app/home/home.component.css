@@ -15,7 +15,15 @@
 h2
 {
     text-align: center;
+    border: 1px solid transparent;
     padding: 50px;
     margin: 5px;
     min-width: 250px;
+    transition: border-color 0.3s, transform 0.3s, color 0.5s;
+}
+
+h2:hover {
+    transform: scale(1.1);
+    border-color: white;
+    color: #7289da;
 }

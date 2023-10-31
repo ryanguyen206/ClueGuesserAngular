@@ -13,7 +13,7 @@ export class PuzzleCreationGridComponent implements OnInit {
   constructor() { }
 
   orderedWords = PUZZLEWORDS;
-  selectedWords = shuffle(this.orderedWords).splice(1, 24);
+  selectedWords = shuffle(this.orderedWords).splice(1, 25);
   puzzle = new Puzzle(this.selectedWords);
 
   ngOnInit(): void {

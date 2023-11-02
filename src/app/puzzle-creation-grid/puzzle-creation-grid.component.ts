@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {PUZZLEWORDS} from '../wordlist';
 import { Puzzle } from '../Puzzle';
 import { shuffle } from '../Shuffle';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Observable, of} from 'rxjs';
 
 @Component({
   selector: 'app-puzzle-creation-grid',
@@ -19,4 +21,33 @@ export class PuzzleCreationGridComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  
+
+
+  async submitClue() {
+    const puzzle = { 
+      id: '2367',
+      user: 'account',
+      cardComponents: [],
+      numberOfCorrectAnswers: 4
+
+
+    }
+
+    try{
+      const response = await fetch('http://localhost:3000/puzzlecreation', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(puzzle)
+
+      });
+
+    }
+    catch(error){
+      console.error('Error:', error);
+    }
+
+  }
 }

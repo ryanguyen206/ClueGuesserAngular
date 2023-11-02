@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {PUZZLEWORDS} from '../wordlist';
+import { PUZZLEWORDS } from '../wordlist';
 import { Puzzle } from '../Puzzle';
 import { shuffle } from '../Shuffle';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Observable, of} from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-puzzle-creation-grid',
@@ -11,43 +10,34 @@ import {Observable, of} from 'rxjs';
   styleUrls: ['./puzzle-creation-grid.component.css']
 })
 export class PuzzleCreationGridComponent implements OnInit {
-
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   orderedWords = PUZZLEWORDS;
   selectedWords = shuffle(this.orderedWords).splice(1, 25);
   puzzle = new Puzzle(this.selectedWords);
 
   ngOnInit(): void {
+    // Initialization logic here (if needed)
   }
 
-  
-
-
-  async submitClue() {
-    const puzzle = { 
+  submitClue() {
+    const puzzle = {
       id: '2367',
       user: 'account',
       cardComponents: [],
       numberOfCorrectAnswers: 4
+    };
 
-
-    }
-
-    try{
-      const response = await fetch('http://localhost:3000/puzzlecreation', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
+    this.http.post<any>('http://localhost:3000/puzzlecreation', puzzle)
+      .subscribe(
+        (response) => {
+          // Handle the response from the server here
+          console.log('POST request successful:', response);
         },
-        body: JSON.stringify(puzzle)
-
-      });
-
-    }
-    catch(error){
-      console.error('Error:', error);
-    }
-
+        (error) => {
+          // Handle any errors here
+          console.error('POST request error:', error);
+        }
+      );
   }
 }

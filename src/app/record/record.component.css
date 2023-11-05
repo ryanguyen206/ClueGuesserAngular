@@ -1,0 +1,38 @@
+.custom-table {
+    border-collapse: collapse;
+    width:70%;
+    font-size: 14px;
+    
+  }
+
+  .custom-table th, .custom-table td {
+    padding: 2em;
+    text-align: left;
+    margin-bottom:20px;
+  }
+  
+  .custom-table thead {
+    border-bottom: 1px solid white;
+    padding-bottom:3em;
+    color: #fff;
+  }
+  
+  .custom-table th {
+    font-weight: bold;
+  }
+
+  .custom-table tr {
+    border-bottom: 0.5px solid white;
+  }
+
+  .container {
+    display:flex;
+    justify-content: center;
+  }
+
+  .custom-table td:first-child {
+    font-weight: 700;
+  }
+  
+
+  

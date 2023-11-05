@@ -10,8 +10,21 @@
 
 
 
-
 <div class="flex-container">
+  <div class="grid">
+    <h2
+      *ngFor="let word of words"
+      (click)="checkWord(word)"
+      [ngClass]="word.selectedClass"
+    >
+      {{ word.name }}
+    </h2>
+  </div>
+</div>
+
+<div *ngIf="isCorrect === true" class="correctorincorrect">Correct!</div>
+<div *ngIf="isCorrect === false" class="correctorincorrect">Incorrect. Try again.</div>
+<!-- <div class="flex-container">
   <div class="grid">
 
       <h2 *ngFor="let word of words" (click)="checkWord(word); ">
@@ -22,4 +35,4 @@
 </div>
 
 <div *ngIf="isCorrect === true" class="correctorincorrect">Correct!</div>
-<div *ngIf="isCorrect === false" class="correctorincorrect">Incorrect. Try again.</div>
+<div *ngIf="isCorrect === false" class="correctorincorrect">Incorrect. Try again.</div> -->

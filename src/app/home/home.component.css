@@ -12,3 +12,21 @@
     margin: 0 auto;
 }
 
+.selected {
+  background-color: green;
+  color: white;
+  transition: background-color 0.3s, color 0.3s; /* Add a transition for background-color and color */
+}
+  
+.correct-answer {
+    background-color: #23a559;
+    color: white;
+    transition: background-color 0.5s;
+}
+  
+.wrong-answer {
+    background-color: #f23f43;
+    color: white;
+    transition: background-color 0.5s;
+}
+  

@@ -14,6 +14,7 @@ export class HomeComponent {
   correctWords: WordInterface[] = [];
   clue: string = 'Animal';
   isCorrect: boolean | null = null;
+  selectedWord: WordInterface | null = null;
 
   constructor() {
     this.selectCorrectWords();
@@ -24,7 +25,18 @@ export class HomeComponent {
     this.correctWords = this.words.filter((word) => word.answerClass === 'correct');
   }
 
+  
   checkWord(word: WordInterface) {
-    this.isCorrect = this.correctWords.some((correctWord) => correctWord.name === word.name);
+    if (!word.selected) {
+      word.selected = true;
+      this.isCorrect = this.correctWords.some((correctWord) => correctWord.name === word.name);
+      
+      if (this.isCorrect) {
+        word.selectedClass = 'correct-answer'; // Apply the class for correct words
+      } else {
+        word.selectedClass = 'wrong-answer'; // Apply the class for incorrect words
+      }
+    }
   }
 }
+

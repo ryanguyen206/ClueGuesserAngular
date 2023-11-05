@@ -27,13 +27,13 @@ export class PuzzleCreationGridComponent implements OnInit {
   }
 
 
-  submitClue(puzzle: Puzzle, userId:string) {
+  submitClue(userId:string) {
       let completedPuzzle = new PuzzleCreationGridClass();
-      completedPuzzle.id = puzzle.id
-      completedPuzzle.numberOfCorrectAnswers = puzzle.numberOfCorrectAnswers,
+      completedPuzzle.id = this.puzzle.id
+      completedPuzzle.numberOfCorrectAnswers = this.puzzle.numberOfCorrectAnswers,
       completedPuzzle.clue = this.clue,
       completedPuzzle.personCreatedId = "123123123",
-      completedPuzzle.cardComponents = puzzle.cardComponents
+      completedPuzzle.cardComponents = this.puzzle.cardComponents
      
      
 

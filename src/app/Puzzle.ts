@@ -9,7 +9,7 @@ export class Puzzle {
 
     constructor(wordlist: string[]) {
         this.id = Math.random()*1000 // random ID, doesn't matter except it needs to be unique so we can reference it later
-        this.numberOfCorrectAnswers = Math.floor(Math.random() * 4) + 1; // returns a number between 1 and 4 inclusive
+        this.numberOfCorrectAnswers = Math.floor(Math.random() * 3) + 2; // returns a number between 1 and 4 inclusive
         this.cardComponents = [];
         let n = this.numberOfCorrectAnswers + 1;
         wordlist.forEach(element => {

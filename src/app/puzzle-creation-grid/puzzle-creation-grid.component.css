@@ -1,7 +1,7 @@
 .flex-container
 {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
@@ -34,5 +34,9 @@ h2
 
 
 #clue {
+    color:black;
+}
+
+#cluebutton {
     color:black;
 }

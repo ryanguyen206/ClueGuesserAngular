@@ -1,7 +1,7 @@
 .flex-container
 {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
@@ -26,6 +26,11 @@
   
 .wrong-answer {
     background-color: #f23f43;
+    color: white;
+    transition: background-color 0.5s;
+}
+.bomb {
+    background-color: #b2b7be;
     color: white;
     transition: background-color 0.5s;
 }

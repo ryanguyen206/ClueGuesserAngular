@@ -3,7 +3,7 @@ import { PUZZLEWORDS } from '../wordlist';
 import { Puzzle } from '../Puzzle';
 import { shuffle } from '../Shuffle';
 import { HttpClient } from '@angular/common/http';
-import {PuzzleCreationGridInterface, PuzzleCreationGridClass} from '../PuzzleCreationSchema'
+import {PuzzleCreationGridClass} from '../PuzzleCreationSchema'
 
 @Component({
   selector: 'app-puzzle-creation-grid',
@@ -13,10 +13,8 @@ import {PuzzleCreationGridInterface, PuzzleCreationGridClass} from '../PuzzleCre
 export class PuzzleCreationGridComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
-  //all of the words in the list
-  orderedWords = PUZZLEWORDS;
   //shuffling all of the words, then taking first 25.
-  selectedWords = shuffle(this.orderedWords).splice(1, 25);
+  selectedWords = shuffle(PUZZLEWORDS).splice(1, 25);
   //after shuffling, assign each card correct, incorrect, bomb, randomID, numberOfCorrectAnswers. Essentially setting up the main structure of the puzzle.
   puzzle = new Puzzle(this.selectedWords);
 
@@ -25,10 +23,20 @@ export class PuzzleCreationGridComponent implements OnInit {
   ngOnInit(): void {
     // Initialization logic here (if needed)
   }
-
+  // this.id = ""
+  // this.cardComponents = [
+  //     {
+  //         id: 1,
+  //         name: "fart",
+  //         answerClass: "incorrect"
+  //     }
+  // ];
+  // this.numberOfCorrectAnswers = "";
+  // this.clue = "";
+  // this.personCreatedId = "";
 
   submitClue(userId:string) {
-      let completedPuzzle = new PuzzleCreationGridClass();
+      let completedPuzzle = new PuzzleCreationGridClass(this.puzzle.id, this.puzzle.cardComponents, this.puzzle.numberOfCorrectAnswers, this.clue, userId);
       completedPuzzle.id = this.puzzle.id
       completedPuzzle.numberOfCorrectAnswers = this.puzzle.numberOfCorrectAnswers,
       completedPuzzle.clue = this.clue,

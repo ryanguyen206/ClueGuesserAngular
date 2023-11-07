@@ -9,15 +9,17 @@ export interface PuzzleCreationGridInterface {
 }
 
 export class PuzzleCreationGridClass {
-    id = 4;
-    cardComponents = [
-        {
-            id:1,
-            name:"fart",
-            answerClass:"incorrect"
-        }
-    ];
-    numberOfCorrectAnswers = 4;
-    clue = ""
-    personCreatedId = ""
+    id: number;
+    cardComponents: any[]; // You should define a type for cardComponents
+    numberOfCorrectAnswers: number;
+    clue: string;
+    personCreatedId: string;
+
+    constructor(id:number, cardComponents: any, numberOfCorrectAnswers:number, clue: string, personCreatedId: string ) {
+        this.id = id
+        this.cardComponents = cardComponents
+        this.numberOfCorrectAnswers = numberOfCorrectAnswers;
+        this.clue = clue;
+        this.personCreatedId = personCreatedId;
+    }
 }

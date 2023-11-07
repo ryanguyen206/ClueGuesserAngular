@@ -2,11 +2,12 @@
     <div class="grid">
         <h2 *ngFor="let word of puzzle.cardComponents" class={{word.answerClass}}>{{word.name}}</h2>
     </div>
-
-    <label htmlFor="clue">Clue</label>
-    <input id="clue" [(ngModel)]="clue" type="text" placeholder="Enter text...">
-
-    <button (click)="submitClue('3')">Submit</button>
+    <div>
+        <label htmlFor="clue">Enter a Clue: </label>
+        <input id="clue" [(ngModel)]="clue" type="text" placeholder="Enter text...">
+        <button id="cluebutton" (click)="submitClue('3')">Submit</button>
+    </div>
+    
 
     
 </div>

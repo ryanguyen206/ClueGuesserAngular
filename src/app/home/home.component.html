@@ -1,9 +1,9 @@
 <!-- This is here so we don't have to constantly guess if the answer is right or not -->
 <!-- <h2>Correct Word: {{ correctWord?.name }}</h2> -->
 
-<!-- Display the clue -->
 
-<p>Clue: {{ clue }}</p>
+
+
 
 
 <!-- <app-puzzle-grid></app-puzzle-grid> -->
@@ -11,6 +11,8 @@
 
 
 <div class="flex-container">
+  <!-- Display the clue -->
+  <p>Clue: {{ clue }} &nbsp; Guesses Remaining: {{ numberOfIncorrectGuessesRemaining }}</p>
   <div class="grid">
     <h2
       *ngFor="let word of words"

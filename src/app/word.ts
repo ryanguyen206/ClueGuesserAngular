@@ -4,10 +4,7 @@ export interface WordInterface {
     id: number;
     name: string;
     answerClass: string;
-    //Selected keeps track on if a word has been clicked
     selected: boolean;
-    //SelectedClass is to apply the if the word is correct or not. "?" is for the property being optional
-    selectedClass?: string;
   }
 
   export class WordClass implements WordInterface {

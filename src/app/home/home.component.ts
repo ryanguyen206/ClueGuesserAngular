@@ -30,74 +30,42 @@ export class HomeComponent {
 
 
   selectCorrectWords() {
-    this.correctWords = this.words.filter((word) => word.answerClass === 'correct');
-    this.incorrectWords = this.words.filter((word) => word.answerClass === 'incorrect');
-    this.bombWord = this.words.filter((word) => word.answerClass === 'bomb');
-    for(let i = 0; i < this.correctWords.length; i++){
-      this.numberOfCorrectWords++;
-    }
-    this.numberOfIncorrectGuessesRemaining = this.numberOfCorrectWords;
-    this.numberOfCorrectGuessesRemaining = this.numberOfCorrectWords;
+      this.correctWords = this.words.filter((word) => word.answerClass === 'correct');
+      this.numberOfIncorrectGuessesRemaining = this.correctWords.length;
+      this.numberOfCorrectGuessesRemaining = this.correctWords.length;
   }
 
-  
   checkWord(word: WordInterface) {
-    if(!this.isGameOver){
-      if (!word.selected) {
+    if(!this.isGameOver && !word.selected && this.numberOfIncorrectGuessesRemaining > 0){
         word.selected = true;
-        this.isCorrect = this.correctWords.some((correctWord) => correctWord.name === word.name);
-        this.isIncorrect = this.incorrectWords.some((incorrectWord) => incorrectWord.name === word.name);
-        this.isBomb = this.bombWord.some((bombWord) => bombWord.name === word.name);
-        
-        if (this.isCorrect) {
-          word.selectedClass = 'correct-answer'; // Apply the class for correct words
+        if(word.answerClass ==='correct')
+        {
           this.numberOfCorrectGuessesRemaining--;
-        } else if (this.isIncorrect){
-          word.selectedClass = 'wrong-answer'; // Apply the class for incorrect words
+        }
+        else if (word.answerClass === 'incorrect'){
           this.numberOfIncorrectGuessesRemaining--;
-        } else if (this.isBomb){
-          word.selectedClass = 'bomb'; // Apply the class for bomb words
+        } else if (word.answerClass === 'bomb'){
           this.numberOfIncorrectGuessesRemaining = 0;
         }
       }
-      if(this.numberOfCorrectGuessesRemaining == 0){
-          this.winGame();
-      }
-      if(this.numberOfIncorrectGuessesRemaining == 0){
-          this.loseGame();
-      }
-    }
-  }
 
-  winGame(){
-    console.log("You Win");
-    for(let i = 0; i < this.words.length; i++){
-      if(this.words[i].selected == false){
-        this.words[i].selected == true;
-        let isCorrect = this.correctWords.some((correctWord) => correctWord.name === this.words[i].name);
-        if (isCorrect) {
-          this.words[i].selectedClass = 'correct-answer'; // Apply the class for correct words
-        } else {
-          this.words[i].selectedClass = 'wrong-answer'; // Apply the class for incorrect words
-        }
+      if(this.numberOfIncorrectGuessesRemaining == 0)
+      {
+        this.isGameOver = true;
+        this.changeStatus("you lose"); 
+      } else if (this.numberOfCorrectGuessesRemaining == 0)
+      {
+        this.isGameOver = true;
+        this.changeStatus("you win"); 
       }
-    }
-    this.isGameOver = true;
-  }
-  loseGame(){
-    console.log("You Lose");
-    for(let i = 0; i < this.words.length; i++){
-      if(this.words[i].selected == false){
-        this.words[i].selected == true;
-        let isCorrect = this.correctWords.some((correctWord) => correctWord.name === this.words[i].name);
-        if (isCorrect) {
-          this.words[i].selectedClass = 'correct-answer'; // Apply the class for correct words
-        } else {
-          this.words[i].selectedClass = 'wrong-answer'; // Apply the class for incorrect words
-        }
-      }
-    }
-    this.isGameOver = true;
-  }
+   }
+
+   changeStatus(status: string) {
+   
+      for(let i=0; i<this.words.length; i++)
+      {
+        this.words[i].selected = true;
+      }  
+   }
 }
 

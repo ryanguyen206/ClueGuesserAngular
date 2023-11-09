@@ -1,15 +1,3 @@
-<!-- This is here so we don't have to constantly guess if the answer is right or not -->
-<!-- <h2>Correct Word: {{ correctWord?.name }}</h2> -->
-
-
-
-
-
-
-<!-- <app-puzzle-grid></app-puzzle-grid> -->
-
-
-
 <div class="flex-container">
   <!-- Display the clue -->
   <p>Clue: {{ clue }} &nbsp; Guesses Remaining: {{ numberOfIncorrectGuessesRemaining }}</p>
@@ -17,7 +5,8 @@
     <h2
       *ngFor="let word of words"
       (click)="checkWord(word)"
-      [ngClass]="word.selectedClass"
+      [ngClass]="word.selected ? word.answerClass : ''"
+      
     >
       {{ word.name }}
     </h2>
@@ -26,15 +15,6 @@
 
 <div *ngIf="isCorrect === true" class="correctorincorrect">Correct!</div>
 <div *ngIf="isCorrect === false" class="correctorincorrect">Incorrect. Try again.</div>
-<!-- <div class="flex-container">
-  <div class="grid">
 
-      <h2 *ngFor="let word of words" (click)="checkWord(word); ">
-        {{ word.name }}
-      </h2>
 
-  </div>
-</div>
-
-<div *ngIf="isCorrect === true" class="correctorincorrect">Correct!</div>
-<div *ngIf="isCorrect === false" class="correctorincorrect">Incorrect. Try again.</div> -->
+<!-- [ngClass]="word.answerClass-->

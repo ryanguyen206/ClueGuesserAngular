@@ -23,17 +23,6 @@ export class PuzzleCreationGridComponent implements OnInit {
   ngOnInit(): void {
     // Initialization logic here (if needed)
   }
-  // this.id = ""
-  // this.cardComponents = [
-  //     {
-  //         id: 1,
-  //         name: "fart",
-  //         answerClass: "incorrect"
-  //     }
-  // ];
-  // this.numberOfCorrectAnswers = "";
-  // this.clue = "";
-  // this.personCreatedId = "";
 
   submitClue(userId:string) {
       let completedPuzzle = new PuzzleCreationGridClass(this.puzzle.id, this.puzzle.cardComponents, this.puzzle.numberOfCorrectAnswers, this.clue, userId);
@@ -43,9 +32,8 @@ export class PuzzleCreationGridComponent implements OnInit {
       completedPuzzle.personCreatedId = "123123123",
       completedPuzzle.cardComponents = this.puzzle.cardComponents
      
-     
 
-    this.http.post<any>('http://localhost:3000/puzzlecreation', completedPuzzle)
+    this.http.post<any>('http://localhost:3000/puzzle', completedPuzzle)
       .subscribe(
         (response) => {
           // Handle the response from the server here

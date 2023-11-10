@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {WORDS} from '../mock-words';
 import {WordInterface} from '../word'
+import { HttpClient } from '@angular/common/http';
+import { WordClass } from '../word';
 
 
 @Component({
@@ -24,8 +26,35 @@ export class HomeComponent {
   numberOfCorrectGuessesRemaining: number = 0;
   isGameOver: boolean = false;
 
-  constructor() {
+  constructor(private http: HttpClient) {
     this.selectCorrectWords();
+
+    this.words = [];
+    this.clue = '';
+
+    this.http.get<any>('http://localhost:3000/puzzle').subscribe(
+      (response) => {
+        console.log('GET request successful:', response);
+        let mongoPuzzle = response[Math.floor(Math.random()*response.length)];
+        this.clue = mongoPuzzle.clue;
+        this.numberOfCorrectGuessesRemaining = mongoPuzzle.answerKey.length - 1;
+        this.numberOfIncorrectGuessesRemaining = this.numberOfCorrectGuessesRemaining;
+    
+        for(let i = 0; i < mongoPuzzle.cards.length; i++){
+          this.words.push(new WordClass(mongoPuzzle.cards[i], "incorrect"))
+        }
+        for(let i = 0; i < mongoPuzzle.answerKey.length; i++){
+          if(i == 0){
+            this.words[mongoPuzzle.answerKey[i]].answerClass = "bomb";
+          } else {
+            this.words[mongoPuzzle.answerKey[i]].answerClass = "correct";
+          }
+        }
+        console.log(this.words);
+      },
+      (error) => {
+        console.error('GET request error:', error);
+      });
   }
 
 
@@ -65,7 +94,8 @@ export class HomeComponent {
       for(let i=0; i<this.words.length; i++)
       {
         this.words[i].selected = true;
-      }  
+      }
+      console.log(status);  
    }
 }
 

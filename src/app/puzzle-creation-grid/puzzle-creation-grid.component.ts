@@ -4,6 +4,7 @@ import { Puzzle } from '../Puzzle';
 import { shuffle } from '../Shuffle';
 import { HttpClient } from '@angular/common/http';
 import {PuzzleCreationGridClass} from '../PuzzleCreationSchema'
+import { MongoPuzzle } from '../MongoPuzzle';
 
 @Component({
   selector: 'app-puzzle-creation-grid',
@@ -25,15 +26,17 @@ export class PuzzleCreationGridComponent implements OnInit {
   }
 
   submitClue(userId:string) {
-      let completedPuzzle = new PuzzleCreationGridClass(this.puzzle.id, this.puzzle.cardComponents, this.puzzle.numberOfCorrectAnswers, this.clue, userId);
+      /* let completedPuzzle = new PuzzleCreationGridClass(this.puzzle.id, this.puzzle.cardComponents, this.puzzle.numberOfCorrectAnswers, this.clue, userId);
       completedPuzzle.id = this.puzzle.id
       completedPuzzle.numberOfCorrectAnswers = this.puzzle.numberOfCorrectAnswers,
       completedPuzzle.clue = this.clue,
       completedPuzzle.personCreatedId = "123123123",
       completedPuzzle.cardComponents = this.puzzle.cardComponents
-     
+      */
 
-    this.http.post<any>('http://localhost:3000/puzzle', completedPuzzle)
+    let mongoPuzzle = new MongoPuzzle(this.puzzle, this.clue);
+
+    this.http.post<any>('http://localhost:3000/puzzle', mongoPuzzle)
       .subscribe(
         (response) => {
           // Handle the response from the server here

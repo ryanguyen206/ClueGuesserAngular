@@ -1,6 +1,6 @@
 <div class="flex-container">
   <!-- Display the clue -->
-  <p>Clue: {{ clue }} &nbsp; Guesses Remaining: {{ numberOfIncorrectGuessesRemaining }}</p>
+  <p>Clue: {{ clue }} &nbsp; Incorrect Guesses Remaining: {{ numberOfIncorrectGuessesRemaining }} &nbsp; Correct Guesses Remaining: {{ numberOfCorrectGuessesRemaining }}</p>
   <div class="grid">
     <h2
       *ngFor="let word of words"

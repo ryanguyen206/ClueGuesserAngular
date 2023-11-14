@@ -1,13 +1,14 @@
-<div class="navbar-container">
+<div class="navbar-container" *ngIf="!isLoginPage()">
     <div>
         <p class="logo"><a routerLink="/">Clue Guesser</a></p>
     </div>
     <nav class="nav">
         <ul class="nav-list">
-          <li><a routerLink="/">Home</a></li>
+          <li><a routerLink="/tutorial">Home</a></li>
           <li><a routerLink="/puzzle">Puzzle</a></li>
           <li><a routerLink="/records">Records</a></li>
           <li><a routerLink="/puzzle-creation">Puzzle Creation</a></li>
+          <li><a routerLink="/login">Login</a></li>
         </ul>
     </nav> 
 </div>

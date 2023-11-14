@@ -9,6 +9,7 @@ import { HomeComponent } from './home/home.component';
 import { RecordComponent } from './record/record.component';
 import { PuzzleCreationGridComponent } from './puzzle-creation-grid/puzzle-creation-grid.component';
 import { TutorialComponent } from './tutorial/tutorial.component';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { TutorialComponent } from './tutorial/tutorial.component';
     RecordComponent,
     PuzzleCreationGridComponent,
     TutorialComponent,
+    LoginComponent,
     
   ],
   imports: [

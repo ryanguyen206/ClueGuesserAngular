@@ -3,7 +3,6 @@ import { PUZZLEWORDS } from '../wordlist';
 import { Puzzle } from '../Puzzle';
 import { shuffle } from '../Shuffle';
 import { HttpClient } from '@angular/common/http';
-import {PuzzleCreationGridClass} from '../PuzzleCreationSchema'
 import { MongoPuzzle } from '../MongoPuzzle';
 
 @Component({

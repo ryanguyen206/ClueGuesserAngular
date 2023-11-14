@@ -6,9 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
-import { PuzzleCreationComponent } from './puzzle-creation/puzzle-creation.component';
 import { RecordComponent } from './record/record.component';
-import { PuzzleGridComponent } from './puzzle-grid/puzzle-grid.component';
 import { PuzzleCreationGridComponent } from './puzzle-creation-grid/puzzle-creation-grid.component';
 import { TutorialComponent } from './tutorial/tutorial.component';
 
@@ -18,9 +16,7 @@ import { TutorialComponent } from './tutorial/tutorial.component';
     AppComponent,
     NavbarComponent,
     HomeComponent,
-    PuzzleCreationComponent,
     RecordComponent,
-    PuzzleGridComponent,
     PuzzleCreationGridComponent,
     TutorialComponent,
     

@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 import { GlobalDataService } from '../global-data.service';
+
 
 @Component({
   selector: 'app-login',
@@ -9,7 +10,7 @@ import { GlobalDataService } from '../global-data.service';
 })
 export class LoginComponent implements OnInit {
   loggedIn: boolean = false;
-  constructor(private router: Router, private dataService: GlobalDataService) {}
+  constructor(private ngZone: NgZone, private router: Router, private dataService: GlobalDataService) {}
 
   ngOnInit() {
     if( sessionStorage.getItem('ID:') == "x") {
@@ -55,7 +56,7 @@ export class LoginComponent implements OnInit {
       sessionStorage.setItem('Picture:', this.googlePacket.picture );
       this.loggedIn = true;
       this.dataService.loginStatus = true;
-      this.router.navigate(['/tutorial']);
+      this.navigate();
     }
 
 
@@ -75,6 +76,13 @@ export class LoginComponent implements OnInit {
     sessionStorage.setItem('Picture:', "" );
     this.loggedIn = false;
     this.ngOnInit();
+  }
+
+  navigate() {
+    this.ngZone.run(() => {
+      // Perform navigation or state changes here
+      this.router.navigate(['/tutorial']);
+    });
   }
 }
 

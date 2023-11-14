@@ -25,8 +25,11 @@ export class HomeComponent {
   numberOfIncorrectGuessesRemaining: number = 0;
   numberOfCorrectGuessesRemaining: number = 0;
   isGameOver: boolean = false;
+  isLogedIn: boolean = false;
 
   constructor(private http: HttpClient) {
+
+
     this.selectCorrectWords();
 
     this.words = [];

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { GlobalDataService } from '../global-data.service';
 
 @Component({
   selector: 'app-login',
@@ -7,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
   loggedIn: boolean = false;
+  constructor(private router: Router, private dataService: GlobalDataService) {}
 
   ngOnInit() {
     if( sessionStorage.getItem('ID:') == "x") {
@@ -32,6 +35,7 @@ export class LoginComponent implements OnInit {
       }  
       else {
         this.loggedIn = true;
+        this.dataService.loginStatus = true;
       }
         
   }
@@ -50,6 +54,8 @@ export class LoginComponent implements OnInit {
       sessionStorage.setItem('Name:', this.googlePacket.name );
       sessionStorage.setItem('Picture:', this.googlePacket.picture );
       this.loggedIn = true;
+      this.dataService.loginStatus = true;
+      this.router.navigate(['/tutorial']);
     }
 
 

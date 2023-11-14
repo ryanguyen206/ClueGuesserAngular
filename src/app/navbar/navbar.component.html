@@ -8,7 +8,8 @@
           <li><a routerLink="/puzzle">Puzzle</a></li>
           <li><a routerLink="/records">Records</a></li>
           <li><a routerLink="/puzzle-creation">Puzzle Creation</a></li>
-          <li><a routerLink="/login">Login</a></li>
+          <p>{{ login ? 'Sign out' : 'Sign in.' }}</p>
+          <!-- <li *ngIf="login"><a routerLink="/login">Login</a></li> -->
         </ul>
     </nav> 
 </div>

@@ -64,6 +64,7 @@ export class LoginComponent implements OnInit {
       sessionStorage.setItem('ID:', this.googlePacket.sub );
       sessionStorage.setItem('Name:', this.googlePacket.name );
       sessionStorage.setItem('Picture:', this.googlePacket.picture );
+      sessionStorage.setItem('Email:', this.googlePacket.email );
       this.dataService.setLoginStatus(true);
       this.isLoggedIn = true;
       this.navigate();

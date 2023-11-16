@@ -4,6 +4,7 @@ import { Puzzle } from '../Puzzle';
 import { shuffle } from '../Shuffle';
 import { HttpClient } from '@angular/common/http';
 import { MongoPuzzle } from '../MongoPuzzle';
+import { User } from '../user';
 
 @Component({
   selector: 'app-puzzle-creation-grid',
@@ -34,6 +35,52 @@ export class PuzzleCreationGridComponent implements OnInit {
       */
 
     let mongoPuzzle = new MongoPuzzle(this.puzzle, this.clue);
+    this.checkUsers(mongoPuzzle);
+
+  }
+
+  checkUsers(mongoPuzzle: MongoPuzzle){
+
+    this.http.get<any>('http://localhost:3000/users').subscribe(
+        (response) => {
+            let isEmailRegistered = false;
+            console.log('USERS GET request successful:', response);
+            for(let i = 0; i < response.length; i++){
+              if(response[i].email == sessionStorage.getItem("Email:")){
+                isEmailRegistered = true;
+                mongoPuzzle.userId = response[i]._id
+                this.submitPuzzle(mongoPuzzle);
+              }
+            }
+            if(isEmailRegistered == false){
+
+              let newUser = new User(
+                sessionStorage.getItem("Name:"),
+                sessionStorage.getItem("Email:"),
+              );
+
+              this.http.post<any>('http://localhost:3000/users', newUser)
+              .subscribe(
+                (response) => {
+                  // Handle the response from the server here
+                  console.log('POST USER request successful:', response);
+                },
+                (error) => {
+                  // Handle any errors here
+                  console.error('POST USER request error:', error);
+                }
+              );
+
+              this.checkUsers(mongoPuzzle);
+            }
+        },
+        (error) => {
+            console.error('USERS GET request error:', error);
+        });
+
+  }
+
+  submitPuzzle(mongoPuzzle: MongoPuzzle){
 
     this.http.post<any>('http://localhost:3000/puzzle', mongoPuzzle)
       .subscribe(
@@ -46,5 +93,6 @@ export class PuzzleCreationGridComponent implements OnInit {
           console.error('POST request error:', error);
         }
       );
+
   }
 }

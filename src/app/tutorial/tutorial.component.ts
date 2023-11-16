@@ -8,7 +8,11 @@ import * as AOS from 'aos';
 })
 export class TutorialComponent implements OnInit {
 
-  constructor() { }
+  constructor() { 
+
+  }
+
+
 
   ngOnInit(): void {
     AOS.init();

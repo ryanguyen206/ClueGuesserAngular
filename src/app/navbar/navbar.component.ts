@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChanges, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 import { GlobalDataService } from '../global-data.service';
 
@@ -7,17 +7,44 @@ import { GlobalDataService } from '../global-data.service';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements OnInit  {
 
-  login: boolean = false;
+  isLoggedIn: boolean = false;
 
-  constructor(private router: Router, private dataService: GlobalDataService) {
-    this.login = this.dataService.loginStatus;
-  }
+  constructor(private ngZone: NgZone, private router: Router, private dataService: GlobalDataService) {}
 
   isLoginPage(): boolean {
     return this.router.url === '/login';
   }
 
-  ngOnInit(): void {}
+  ngOnInit() {
+
+    this.dataService.loginStatus$.subscribe((status) => {
+      this.isLoggedIn = status;
+    });
+
+    if( sessionStorage.getItem('ID:') == "x") {
+      this.isLoggedIn = false;
+      this.navigate();
+    }
+  }
+
+
+  logout(): void {
+    sessionStorage.setItem('ID:', "x" );
+    sessionStorage.setItem('Name:', "" );
+    sessionStorage.setItem('Picture:', "" );
+    this.dataService.setLoginStatus(false);
+    this.navigate();
+  }
+
+
+
+  navigate() {
+    this.ngZone.run(() => {
+      this.router.navigate(['/login']);
+    });
+  }
+
+
 }

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -6,12 +7,11 @@ import { Injectable } from '@angular/core';
 export class GlobalDataService {
 
 
-  loginStatus: boolean = false;
+  private loginStatusSubject = new BehaviorSubject<boolean>(false);
+  loginStatus$: Observable<boolean> = this.loginStatusSubject.asObservable();
 
-  constructor() { }
-
-  setGlobalVariable(newValue: boolean): void {
-    this.loginStatus = newValue;
+  setLoginStatus(status: boolean): void {
+    this.loginStatusSubject.next(status);
   }
 
 }

@@ -9,12 +9,19 @@ import { GlobalDataService } from '../global-data.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  loggedIn: boolean = false;
+  isLoggedIn: boolean = false;
   constructor(private ngZone: NgZone, private router: Router, private dataService: GlobalDataService) {}
 
   ngOnInit() {
+
+    this.dataService.loginStatus$.subscribe((status) => {
+      this.isLoggedIn = status;
+      console.log(this.isLoggedIn)
+    });
+
+
     if( sessionStorage.getItem('ID:') == "x") {
-      this.loggedIn = false;
+      this.isLoggedIn = false;
       console.log(sessionStorage.getItem('ID:'));
     // @ts-ignore
       google.accounts.id.initialize({
@@ -32,13 +39,16 @@ export class LoginComponent implements OnInit {
         );
         // @ts-ignore
         google.accounts.id.prompt((notification: PromptMomentNotification) => {});
-      
+
       }  
       else {
-        this.loggedIn = true;
-        this.dataService.loginStatus = true;
+        this.isLoggedIn = true;
+        this.dataService.setLoginStatus(true);
+   
       }
-        
+
+      console.log(this.dataService.loginStatus$)
+ 
   }
 
   googlePacket: any;
@@ -54,8 +64,8 @@ export class LoginComponent implements OnInit {
       sessionStorage.setItem('ID:', this.googlePacket.sub );
       sessionStorage.setItem('Name:', this.googlePacket.name );
       sessionStorage.setItem('Picture:', this.googlePacket.picture );
-      this.loggedIn = true;
-      this.dataService.loginStatus = true;
+      this.dataService.setLoginStatus(true);
+      this.isLoggedIn = true;
       this.navigate();
     }
 
@@ -74,7 +84,8 @@ export class LoginComponent implements OnInit {
     sessionStorage.setItem('ID:', "x" );
     sessionStorage.setItem('Name:', "" );
     sessionStorage.setItem('Picture:', "" );
-    this.loggedIn = false;
+    this.isLoggedIn = false;
+    this.dataService.setLoginStatus(false);
     this.ngOnInit();
   }
 

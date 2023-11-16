@@ -2,7 +2,7 @@
 <head>
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
-<div *ngIf="loggedIn == true">
+<div *ngIf="isLoggedIn == true">
 
     <span>You are Logged In</span>
     <br>
@@ -11,7 +11,7 @@
  
   
  
- <div *ngIf="loggedIn == false">
+ <div *ngIf="isLoggedIn == false">
   
    <span>You are Logged Out</span>
  
@@ -19,8 +19,6 @@
  
  
  
-
-
 
  <div class="box">
   <form>

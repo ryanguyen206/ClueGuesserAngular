@@ -26,6 +26,7 @@ export class HomeComponent {
   numberOfCorrectGuessesRemaining: number = 0;
   isGameOver: boolean = false;
   isLogedIn: boolean = false;
+  puzzleID : string = "override"
 
   constructor(private http: HttpClient) {
 
@@ -37,10 +38,11 @@ export class HomeComponent {
 
     this.http.get<any>('http://localhost:3000/puzzle').subscribe(
       (response) => {
-        console.log('GET request successful:', response);
         let mongoPuzzle = response[Math.floor(Math.random()*response.length)];
+        this.puzzleID = mongoPuzzle._id;
         this.clue = mongoPuzzle.clue;
         this.numberOfCorrectGuessesRemaining = mongoPuzzle.answerKey.length - 1;
+        this.numberOfCorrectWords = this.numberOfCorrectGuessesRemaining;
         this.numberOfIncorrectGuessesRemaining = this.numberOfCorrectGuessesRemaining;
     
         for(let i = 0; i < mongoPuzzle.cards.length; i++){
@@ -53,7 +55,7 @@ export class HomeComponent {
             this.words[mongoPuzzle.answerKey[i]].answerClass = "correct";
           }
         }
-        console.log(this.words);
+
       },
       (error) => {
         console.error('GET request error:', error);
@@ -84,21 +86,47 @@ export class HomeComponent {
       if(this.numberOfIncorrectGuessesRemaining == 0)
       {
         this.isGameOver = true;
-        this.changeStatus("you lose"); 
+        this.endGame(0);
+
       } else if (this.numberOfCorrectGuessesRemaining == 0)
       {
+        let scoreToUpdate = this.numberOfCorrectWords * 25;
         this.isGameOver = true;
-        this.changeStatus("you win"); 
+        this.endGame(scoreToUpdate);
+ 
       }
+
+     
    }
 
-   changeStatus(status: string) {
-   
+   endGame(score : number) {
       for(let i=0; i<this.words.length; i++)
       {
         this.words[i].selected = true;
       }
-      console.log(status);  
+
+      this.updateScores(score);
    }
+
+   updateScores(score : number)
+   {
+      const email = sessionStorage.getItem("Email:")
+        const dataToUpdate = {
+          scoreToUpdate: score,
+          email: email,
+          puzzleID: this.puzzleID
+        };
+        this.http.put<any>('http://localhost:3000/users', dataToUpdate).subscribe((response) => {
+          console.log('PUT request successful:', response);
+        }, 
+        (error) => {
+          console.error('PUT request error:', error);
+        },
+        )
+   }
+
+
+
+  
 }
 

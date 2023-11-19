@@ -1,6 +1,8 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 import { GlobalDataService } from '../global-data.service';
+import { HttpClient } from '@angular/common/http';
+import { User } from '../user';
 
 
 @Component({
@@ -10,13 +12,12 @@ import { GlobalDataService } from '../global-data.service';
 })
 export class LoginComponent implements OnInit {
   isLoggedIn: boolean = false;
-  constructor(private ngZone: NgZone, private router: Router, private dataService: GlobalDataService) {}
+  constructor(private ngZone: NgZone, private router: Router, private dataService: GlobalDataService, private http: HttpClient) {}
 
   ngOnInit() {
 
     this.dataService.loginStatus$.subscribe((status) => {
       this.isLoggedIn = status;
-      console.log(this.isLoggedIn)
     });
 
 
@@ -67,6 +68,7 @@ export class LoginComponent implements OnInit {
       sessionStorage.setItem('Email:', this.googlePacket.email );
       this.dataService.setLoginStatus(true);
       this.isLoggedIn = true;
+      this.checkUsers();
       this.navigate();
     }
 
@@ -79,6 +81,43 @@ export class LoginComponent implements OnInit {
   }).join(''));
   return JSON.parse(jsonPayload);
   };
+
+  checkUsers(){
+    this.http.get<any>('http://localhost:3000/users').subscribe(
+        (response) => {
+            let isEmailRegistered = false;
+            console.log('USERS GET request successful:', response);
+            for(let i = 0; i < response.length; i++){
+              if(response[i].email == sessionStorage.getItem("Email:")){
+                isEmailRegistered = true;
+              }
+            }
+            if(isEmailRegistered == false){
+
+              let newUser = new User(
+                sessionStorage.getItem("Name:"),
+                sessionStorage.getItem("Email:"),
+              );
+
+              this.http.post<any>('http://localhost:3000/users', newUser)
+              .subscribe(
+                (response) => {
+                  // Handle the response from the server here
+                  console.log('POST USER request successful:', response);
+                },
+                (error) => {
+                  // Handle any errors here
+                  console.error('POST USER request error:', error);
+                }
+              );
+            }
+        },
+        (error) => {
+            console.error('USERS GET request error:', error);
+        });
+
+  }
+  
 
 
   logout(): void {

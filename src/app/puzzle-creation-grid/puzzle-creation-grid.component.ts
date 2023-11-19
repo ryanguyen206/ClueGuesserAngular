@@ -25,61 +25,21 @@ export class PuzzleCreationGridComponent implements OnInit {
     // Initialization logic here (if needed)
   }
 
-  submitClue(userId:string) {
-      /* let completedPuzzle = new PuzzleCreationGridClass(this.puzzle.id, this.puzzle.cardComponents, this.puzzle.numberOfCorrectAnswers, this.clue, userId);
-      completedPuzzle.id = this.puzzle.id
-      completedPuzzle.numberOfCorrectAnswers = this.puzzle.numberOfCorrectAnswers,
-      completedPuzzle.clue = this.clue,
-      completedPuzzle.personCreatedId = "123123123",
-      completedPuzzle.cardComponents = this.puzzle.cardComponents
-      */
-
+  submitClue() {
     let mongoPuzzle = new MongoPuzzle(this.puzzle, this.clue);
-    this.checkUsers(mongoPuzzle);
-
-  }
-
-  checkUsers(mongoPuzzle: MongoPuzzle){
 
     this.http.get<any>('http://localhost:3000/users').subscribe(
         (response) => {
-            let isEmailRegistered = false;
-            console.log('USERS GET request successful:', response);
             for(let i = 0; i < response.length; i++){
               if(response[i].email == sessionStorage.getItem("Email:")){
-                isEmailRegistered = true;
                 mongoPuzzle.userId = response[i]._id
                 this.submitPuzzle(mongoPuzzle);
               }
-            }
-            if(isEmailRegistered == false){
+      }})
+    }
 
-              let newUser = new User(
-                sessionStorage.getItem("Name:"),
-                sessionStorage.getItem("Email:"),
-              );
 
-              this.http.post<any>('http://localhost:3000/users', newUser)
-              .subscribe(
-                (response) => {
-                  // Handle the response from the server here
-                  console.log('POST USER request successful:', response);
-                },
-                (error) => {
-                  // Handle any errors here
-                  console.error('POST USER request error:', error);
-                }
-              );
-
-              this.checkUsers(mongoPuzzle);
-            }
-        },
-        (error) => {
-            console.error('USERS GET request error:', error);
-        });
-
-  }
-
+  
   submitPuzzle(mongoPuzzle: MongoPuzzle){
 
     this.http.post<any>('http://localhost:3000/puzzle', mongoPuzzle)

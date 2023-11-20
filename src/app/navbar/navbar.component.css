@@ -25,7 +25,6 @@
 
 ul
 {
-  
     display:flex;
     color:white;
 }
@@ -38,15 +37,32 @@ li
     cursor: pointer;
 }
 
-li a
-{
-    font-size:1.2rem;
+li a {
+    font-size: 1.2rem;
     padding-left: 1.5em;
     text-decoration: none;
-    color:white;
+    color: white;
+    position: relative; 
+    
 }
 
-li a:hover
-{
-    color:lightgray
+li a::before {
+    content: '';
+    position: absolute;
+    left: auto;
+    bottom: 0;
+    width: 0;
+    height: 100%;
+    border-bottom: 2px solid lightgray; 
+    transition: width 0.3s ease; 
+}
+
+li a:hover::before {
+    width: 100%;
+    transition: width 0.3s ease; 
+}
+
+li a:hover {
+    color: lightgray;
+    text-decoration: none;
 }

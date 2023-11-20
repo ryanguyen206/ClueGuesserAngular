@@ -2,44 +2,40 @@
 <head>
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
-<div *ngIf="isLoggedIn == true">
-
-    <span>You are Logged In</span>
-    <br>
-    <button type="button"  class="btn btn-primary" (click)="logout()">Logout</button>  <br>  <br> 
- </div>
- 
-  
- 
- <div *ngIf="isLoggedIn == false">
-  
-   <span>You are Logged Out</span>
- 
- </div> <br>  <br> 
- 
- 
+<body>
+ <br>  <br> 
  
 
- <div class="box">
-  <form>
-    <h1>Sign in</h1>
-    <div class="" id="google-button"></div>
-    <!-- <div class="inputBox">
-      <input type="text" required="required">
-      <span>Username</span>
-      <i></i>
+
+<div class="container">
+
+  <p class="welcomeText">Welcome to Clue Guesser</p>
+
+
+  <img class='agentLeft' src="https://cdn.discordapp.com/attachments/871488924328022040/1176026840842903612/spy_image.png?ex=656d5f58&is=655aea58&hm=c2a92e61caa6ea6de40a766cd7410c02671e4e044d7d85f51806200f5fe0c52d&"/>
+  <img class='agentRight' src="https://cdn.discordapp.com/attachments/871488924328022040/1176027074054602832/spy_image_rotated.png?ex=656d5f8f&is=655aea8f&hm=3c72d009aa9fd56bb6ff7b3c6561edb122bbcd1b7e0cc4bfc03f77ea4ebb4e8f&"/>
+  <div class="box">
+    <form>
+      <h1>Sign in</h1>
+      <div class="google-button" id="google-button"></div>
+      <div id="loginstatus" *ngIf="isLoggedIn == true">
+        <a id="tutorialLink"routerLink="/tutorial">Homepage</a>
+        <br><br><br><br>
+        
+        <span >You are currently logged in</span>
+        <br>
+        <button type="button"  class="btn btn-primary" (click)="logout()" id="logoutButton">Logout</button>  <br>  <br> 
+        
     </div>
-    <div class="inputBox">
-      <input type="password" required="required">
-      <span>Password</span>
-      <i></i>
+
+    <div id="loginstatus" *ngIf="isLoggedIn == false">
+      
+      <span >You are currently logged out</span>
+    
     </div>
-    <div class="links">
-      <a href="#">Forgot Password</a>
-      <a href="#">Forgot Password</a>
-    </div>
-    <input type="submit" value="Login"> -->
-  </form>
+    </form>
+
+  </div>
+  
 </div>
-  
-   
+</body>

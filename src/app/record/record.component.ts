@@ -12,6 +12,7 @@ import { mergeMap } from 'rxjs/operators';
 export class RecordComponent implements OnInit {
 
   allUsers: any = [];
+  winRatio: number = -1;
 
   constructor(private httpClient: HttpClient) { }
 
@@ -24,5 +25,9 @@ export class RecordComponent implements OnInit {
           console.error('USERS GET request error:', error);
       });
 
+  }
+
+  winRatioCalculator(numerator: number, denominator: number): number{
+    return Math.trunc(numerator / denominator * 100)/100;
   }
 }

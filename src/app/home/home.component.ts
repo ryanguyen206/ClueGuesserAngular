@@ -27,6 +27,7 @@ export class HomeComponent {
   isGameOver: boolean = false;
   isLogedIn: boolean = false;
   puzzleID : string = "override"
+  isWinner: number = 0;
 
   constructor(private http: HttpClient) {
 
@@ -93,6 +94,7 @@ export class HomeComponent {
       {
         let scoreToUpdate = this.numberOfCorrectWords * 25;
         this.isGameOver = true;
+        this.isWinner = 1;
         this.endGame(scoreToUpdate);
       }
 
@@ -114,7 +116,8 @@ export class HomeComponent {
         const dataToUpdate = {
           scoreToUpdate: score,
           email: email,
-          puzzleID: this.puzzleID
+          puzzleID: this.puzzleID,
+          isWinner: this.isWinner
         };
         this.http.put<any>('http://localhost:3000/users', dataToUpdate).subscribe((response) => {
           console.log('PUT request successful:', response);

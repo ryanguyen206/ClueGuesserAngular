@@ -83,17 +83,17 @@ export class HomeComponent {
         }
       }
 
-      if(this.numberOfIncorrectGuessesRemaining == 0)
+    if(this.numberOfIncorrectGuessesRemaining == 0)
       {
+        let scoreToUpdate = (this.numberOfCorrectWords - this.numberOfCorrectGuessesRemaining) * 25;
         this.isGameOver = true;
-        this.endGame(0);
+        this.endGame(scoreToUpdate);
 
       } else if (this.numberOfCorrectGuessesRemaining == 0)
       {
         let scoreToUpdate = this.numberOfCorrectWords * 25;
         this.isGameOver = true;
         this.endGame(scoreToUpdate);
- 
       }
 
      

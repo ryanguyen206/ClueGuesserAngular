@@ -9,15 +9,17 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>John Doe</td>
-        <td>105</td>
-        <td>250</td>
-      </tr>
-      <tr>
-        <td>Jane Smith</td>
-        <td>87</td>
-        <td>30</td>
+      <tr *ngFor="let singleUser of allUsers">
+        <td>
+            {{singleUser.name}}
+        </td>
+        <td>
+            {{singleUser.guessingScore}}
+        </td>
+        <td>
+            {{singleUser.creationScore}}
+        </td>
+
       </tr>
     </tbody>
   </table>

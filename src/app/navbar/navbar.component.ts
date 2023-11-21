@@ -23,10 +23,10 @@ export class NavbarComponent implements OnInit  {
       this.isLoggedIn = status;
     });
 
-    if( sessionStorage.getItem('ID:') == "x" || this.isLoggedIn === false) {
+    /* if( sessionStorage.getItem('ID:') == "x" || this.isLoggedIn === false) {
       this.isLoggedIn = false;
       this.navigate();
-    }
+    } */
 
     console.log(this.isLoggedIn)
   }

@@ -13,6 +13,7 @@ export class RecordComponent implements OnInit {
 
   allUsers: any = [];
   winRatio: number = -1;
+  sortOrders: { [key: string]: string } = {};
 
   constructor(private httpClient: HttpClient) { }
 
@@ -29,5 +30,22 @@ export class RecordComponent implements OnInit {
 
   winRatioCalculator(numerator: number, denominator: number): number{
     return Math.trunc(numerator / denominator * 100)/100;
+  }
+
+  sortData(property: string): void {
+    const sortOrder = this.sortOrders[property] === 'asc' ? 1 : -1;
+
+    this.allUsers.sort((a: any, b: any) => {
+      const valueA = a[property];
+      const valueB = b[property];
+
+      if (typeof valueA === 'string') {
+        return sortOrder * valueA.localeCompare(valueB);
+      } else {
+        return sortOrder * (valueA - valueB);
+      }
+    });
+
+    this.sortOrders[property] = this.sortOrders[property] === 'asc' ? 'desc' : 'asc';
   }
 }

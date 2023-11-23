@@ -1,14 +1,15 @@
-<div  class='container'>
+
+<div class='container'>
 
 <table class="custom-table">
     <thead>
       <tr>
-        <th>Name</th>
-        <th>Guessing Score</th>
-        <th>Creating Score</th>
-        <th>Number of Wins</th>
-        <th>Games Played</th>
-        <th>Win Ratio</th>
+        <th (click)="sortData('name')" class="sortColumn">Name</th>
+        <th (click)="sortData('guessingScore')"class="sortColumn">Guessing Score</th>
+        <th (click)="sortData('creationScore')" class="sortColumn">Creating Score</th>
+        <th (click)="sortData('totalWins')" class="sortColumn">Number of Wins</th>
+        <th (click)="sortData('totalGames')" class="sortColumn">Games Played</th>
+        <th (click)="sortData('winRatio')" class="sortColumn">Win Ratio</th>
       </tr>
     </thead>
     <tbody>

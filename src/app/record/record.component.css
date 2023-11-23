@@ -5,6 +5,7 @@
     
   }
 
+
   .custom-table th, .custom-table td {
     padding: 2em;
     text-align: left;
@@ -34,5 +35,6 @@
     font-weight: 700;
   }
   
-
-  
+  .sortColumn:hover {
+    cursor: pointer;
+  }

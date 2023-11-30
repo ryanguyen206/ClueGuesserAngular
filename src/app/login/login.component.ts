@@ -83,7 +83,8 @@ export class LoginComponent implements OnInit {
   };
 
   checkUsers(){
-    this.http.get<any>('http://localhost:3000/users').subscribe(
+    this.http.get<any>('https://clueguessernodeserver.azurewebsites.net/users').subscribe(
+      // this.http.get<any>('http://localhost:3000/users').subscribe(
         (response) => {
             let isEmailRegistered = false;
             console.log('USERS GET request successful:', response);
@@ -99,7 +100,8 @@ export class LoginComponent implements OnInit {
                 sessionStorage.getItem("Email:"),
               );
 
-              this.http.post<any>('http://localhost:3000/users', newUser)
+              this.http.post<any>('https://clueguessernodeserver.azurewebsites.net/users', newUser)
+              // this.http.post<any>('http://localhost:3000/users', newUser)
               .subscribe(
                 (response) => {
                   // Handle the response from the server here

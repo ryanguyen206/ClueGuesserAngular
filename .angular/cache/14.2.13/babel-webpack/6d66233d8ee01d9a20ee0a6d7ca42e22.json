@@ -1,0 +1,1 @@
+{"ast":null,"code":"// This is an experimental word class which probably won't be used in production\nexport class WordClass {\n  constructor(word, answerClass) {\n    this.selected = false;\n    this.id = Math.random() * 1000;\n    this.name = word;\n    this.answerClass = answerClass;\n  }\n\n}","map":null,"metadata":{},"sourceType":"module"}

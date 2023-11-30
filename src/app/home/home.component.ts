@@ -37,7 +37,8 @@ export class HomeComponent {
     this.words = [];
     this.clue = '';
 
-    this.http.get<any>('http://localhost:3000/puzzle').subscribe(
+    this.http.get<any>('https://clueguessernodeserver.azurewebsites.net/puzzle').subscribe(
+      // this.http.get<any>('http://localhost:3000/puzzle').subscribe(
       (response) => {
         let mongoPuzzle = response[Math.floor(Math.random()*response.length)];
         this.puzzleID = mongoPuzzle._id;
@@ -119,7 +120,8 @@ export class HomeComponent {
           puzzleID: this.puzzleID,
           isWinner: this.isWinner
         };
-        this.http.put<any>('http://localhost:3000/users', dataToUpdate).subscribe((response) => {
+        this.http.put<any>('https://clueguessernodeserver.azurewebsites.net/users', dataToUpdate).subscribe((response) => {
+          // this.http.put<any>('http://localhost:3000/users', dataToUpdate).subscribe((response) => {
           console.log('PUT request successful:', response);
         }, 
         (error) => {

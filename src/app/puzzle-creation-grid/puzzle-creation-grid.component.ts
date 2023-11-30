@@ -28,7 +28,8 @@ export class PuzzleCreationGridComponent implements OnInit {
   submitClue() {
     let mongoPuzzle = new MongoPuzzle(this.puzzle, this.clue);
 
-    this.http.get<any>('http://localhost:3000/users').subscribe(
+    this.http.get<any>('https://clueguessernodeserver.azurewebsites.net/users').subscribe(
+      // this.http.get<any>('http://localhost:3000/users').subscribe(
         (response) => {
             for(let i = 0; i < response.length; i++){
               if(response[i].email == sessionStorage.getItem("Email:")){
@@ -42,7 +43,8 @@ export class PuzzleCreationGridComponent implements OnInit {
   
   submitPuzzle(mongoPuzzle: MongoPuzzle){
 
-    this.http.post<any>('http://localhost:3000/puzzle', mongoPuzzle)
+    this.http.post<any>('https://clueguessernodeserver.azurewebsites.net/puzzle', mongoPuzzle)
+    // this.http.post<any>('http://localhost:3000/puzzle', mongoPuzzle)
       .subscribe(
         (response) => {
           // Handle the response from the server here

@@ -18,7 +18,8 @@ export class RecordComponent implements OnInit {
   constructor(private httpClient: HttpClient) { }
 
   ngOnInit(): void {
-    this.httpClient.get<any>('http://localhost:3000/users').subscribe(
+    this.httpClient.get<any>('https://clueguessernodeserver.azurewebsites.net/users').subscribe(
+      // this.httpClient.get<any>('http://localhost:3000/users').subscribe(
       (response) => {
           this.allUsers = response;
       },

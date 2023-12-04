@@ -5,6 +5,8 @@ import { shuffle } from '../Shuffle';
 import { HttpClient } from '@angular/common/http';
 import { MongoPuzzle } from '../MongoPuzzle';
 import { User } from '../user';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-puzzle-creation-grid',
@@ -12,7 +14,7 @@ import { User } from '../user';
   styleUrls: ['./puzzle-creation-grid.component.css']
 })
 export class PuzzleCreationGridComponent implements OnInit {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private toastr: ToastrService, private router: Router) { }
 
   //shuffling all of the words, then taking first 25.
   selectedWords = shuffle(PUZZLEWORDS).splice(1, 25);
@@ -26,6 +28,12 @@ export class PuzzleCreationGridComponent implements OnInit {
   }
 
   submitClue() {
+    if (this.clue.length == 0)
+    {
+      this.toastr.error('Clue cannot be invalid', 'Error!', {
+        timeOut:3000
+      })
+    }
     let mongoPuzzle = new MongoPuzzle(this.puzzle, this.clue);
 
     this.http.get<any>('https://clueguessernodeserver.azurewebsites.net/users').subscribe(
@@ -38,17 +46,19 @@ export class PuzzleCreationGridComponent implements OnInit {
               }
       }})
     }
-
-
   
   submitPuzzle(mongoPuzzle: MongoPuzzle){
-
     this.http.post<any>('https://clueguessernodeserver.azurewebsites.net/puzzle', mongoPuzzle)
     // this.http.post<any>('http://localhost:3000/puzzle', mongoPuzzle)
       .subscribe(
         (response) => {
           // Handle the response from the server here
+          this.toastr.success(`Your clue ${this.clue.toUpperCase()} has been submitted`, `Success!`, {
+            timeOut:3000,
+          })
+          this.clue = ''
           console.log('POST request successful:', response);
+          this.refreshPage()
         },
         (error) => {
           // Handle any errors here
@@ -56,5 +66,13 @@ export class PuzzleCreationGridComponent implements OnInit {
         }
       );
 
+  }
+
+  refreshPage() {
+    setTimeout(() => {
+      this.router.navigate(['/tutorial'], { skipLocationChange: true }).then(() => {
+        this.router.navigate(['/puzzle-creation']);
+      });
+    }, 2200)
   }
 }

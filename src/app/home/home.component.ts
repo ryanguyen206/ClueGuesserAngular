@@ -3,6 +3,8 @@ import {WORDS} from '../mock-words';
 import {WordInterface} from '../word'
 import { HttpClient } from '@angular/common/http';
 import { WordClass } from '../word';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -29,7 +31,7 @@ export class HomeComponent {
   puzzleID : string = "override"
   isWinner: number = 0;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private toastr: ToastrService, private router: Router) {
 
 
     this.selectCorrectWords();
@@ -89,15 +91,25 @@ export class HomeComponent {
       {
         let scoreToUpdate = (this.numberOfCorrectWords - this.numberOfCorrectGuessesRemaining) * 25;
         this.isGameOver = true;
+        this.toastr.info(`You lost. Points scored: ${scoreToUpdate}`, '', {
+          timeOut:2000,
+
+        });
         this.endGame(scoreToUpdate);
+     
 
       } else if (this.numberOfCorrectGuessesRemaining == 0)
       {
         let scoreToUpdate = this.numberOfCorrectWords * 25;
         this.isGameOver = true;
         this.isWinner = 1;
+        this.toastr.info(`You won. Points scored: ${scoreToUpdate}`, '', {
+          timeOut:2000,
+        })
         this.endGame(scoreToUpdate);
       }
+
+
 
      
    }
@@ -128,10 +140,6 @@ export class HomeComponent {
           console.error('PUT request error:', error);
         },
         )
-   }
-
-
-
-  
+   }  
 }
 

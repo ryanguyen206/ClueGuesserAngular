@@ -10,6 +10,7 @@
     display: grid;
     grid-template-columns: repeat(5, 0fr);
     margin: 0 auto;
+    margin-bottom:2em;
 }
 
 h2
@@ -40,3 +41,56 @@ h2
 #cluebutton {
     color:black;
 }
+
+.userInput {
+    margin-top:2em;
+    margin-bottom:2em;
+}
+
+label {
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    font-size: 1.3rem;
+    display: block;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+.custom-input {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-width: 1px;
+    border-radius: 0.25rem;
+    width: 100%;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    line-height: 1.25;
+    outline: none;
+    color:black;
+    margin-bottom:1rem;
+  }
+  
+.custom-input:focus {
+    box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
+}
+
+
+.custom-button { /* Tailwind CSS color for bg-blue-500 */
+    color: #fff; /* Tailwind CSS color for text-white */
+    font-weight: bold;
+    padding: 0.4rem 1rem; /* Tailwind CSS padding for py-2 px-4 */
+    border-radius: 0.25rem; /* Tailwind CSS border radius for rounded */
+    cursor: pointer;
+    border: none;
+    outline: none;
+    margin-bottom:1em;
+    margin-left:1em;
+  }
+
+  .test {
+    display:flex;
+
+  }

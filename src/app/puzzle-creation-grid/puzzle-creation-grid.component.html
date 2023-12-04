@@ -1,12 +1,17 @@
 <div class="flex-container">
+    <div class="mb-4">
+        <label class="custom-label" htmlFor="clue"> Clue </label>
+        <div class="test">
+            <input [(ngModel)]="clue" class="custom-input" id="clue" type="text" placeholder="Enter clue...">
+            <button id="cluebutton" class="custom-button" (click)="submitClue()">Submit</button>
+        </div>
+       
+    </div>
+
     <div class="grid">
         <h2 *ngFor="let word of puzzle.cardComponents" class={{word.answerClass}}>{{word.name}}</h2>
     </div>
-    <div>
-        <label htmlFor="clue">Enter a Clue: </label>
-        <input id="clue" [(ngModel)]="clue" type="text" placeholder="Enter text..." autocomplete="off">
-        <button id="cluebutton" (click)="submitClue()">Submit</button>
-    </div>
+
     
 
     
